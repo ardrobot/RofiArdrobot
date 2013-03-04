@@ -4,18 +4,18 @@
 // Current dimenensions for the Kyocera Hydro
 // Original Archos 28 settings shown after the 
 // comment on each line
-phone_length = 115; // 100
+phone_length = 115; // 101
 phone_width = 62; // 53
 phone_depth = 13; // 10
 phone_back_radius = 2; // 4
 cutout_height = 16; // 58
 cutout_width = 40; // 42
-cutout_vertical_offset = 37; // 14
+cutout_vertical_offset = 38; // 14
 hood_mount = true; // false
 
 // Computed Dimensions
 overall_width = phone_width + 15;
-overall_length = phone_length + 7;
+overall_length = phone_length + 6;
 mount_width = (overall_width/2) - 2.8;
 bracket_width = (overall_width/2) - 6.5;
 
@@ -32,6 +32,10 @@ module body_panel_top() {
 				translate(v = [0,cutout_vertical_offset-(cutout_height/2)-6,0]) cube(size = [2.9,2.9,4], center = true);
 			}
 		}
+
+		// Extra secure mount on top and bottom
+		translate(v = [0,(overall_length/2)-1,2]) cube(size = [6,2,3], center = true);
+		translate(v = [0,-(overall_length/2)+1,2]) cube(size = [6,2,3], center = true);
 
 		// Screw Mounts
 		translate(v = [mount_width,26.4,4.6]) screw_mount();
