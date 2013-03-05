@@ -1,12 +1,13 @@
 //color("Blue") import("body_panel_top.stl");
+//color("Blue") import("body_panel_front.stl");
 
 // Phone Dimensions
 // Current dimenensions for the Kyocera Hydro
 // Original Archos 28 settings shown after the 
 // comment on each line
-phone_length = 115; // 101
-phone_width = 62; // 53
-phone_depth = 13; // 10
+phone_length = 115; // 101 115
+phone_width = 62; // 53 62
+phone_depth = 13; // 10 13
 phone_back_radius = 2; // 4
 cutout_height = 16; // 58
 cutout_width = 40; // 42
@@ -19,9 +20,50 @@ overall_length = phone_length + 6;
 mount_width = (overall_width/2) - 2.8;
 bracket_width = (overall_width/2) - 6.5;
 
-//phone_bracket();
-body_panel_top();
-module body_panel_top() {
+// Full body
+translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
+translate(v = [0, (overall_length/2)+1.6, (overall_width/2)]) rotate(a = [0,90,-90]) body_panel_left();
+translate(v = [0, -(overall_length/2)-1.6, (overall_width/2)]) rotate(a = [0,90,90]) body_panel_right();
+
+
+// print
+//body_panel_front();
+//body_panel_left();
+//body_panel_right();
+
+module body_panel_left() {
+	union() {
+		difference() {
+			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
+			translate(v = [(overall_width/2)-26,-(overall_width/2)+6,0]) cube(size = [18,16,4],center = true);
+		}
+
+		// Screw Mounts
+		translate(v = [mount_width,18.5,4.6]) screw_mount();
+		translate(v = [-mount_width,18.5,4.6]) screw_mount();
+		translate(v = [mount_width,-17.5,4.6]) screw_mount();
+		translate(v = [-mount_width,-17.5,4.6]) screw_mount();
+
+	}
+}
+
+module body_panel_right() {
+	union() {
+		difference() {
+			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
+		}
+
+		// Screw Mounts
+		translate(v = [mount_width,18.5,4.6]) screw_mount();
+		translate(v = [-mount_width,18.5,4.6]) screw_mount();
+		translate(v = [mount_width,-17.5,4.6]) screw_mount();
+		translate(v = [-mount_width,-17.5,4.6]) screw_mount();
+
+	}
+}
+
+
+module body_panel_front() {
 	union() {
 		difference() {
 			translate(v = [0,0,.8]) cube(size = [overall_width,overall_length,1.6], center = true);
@@ -34,8 +76,8 @@ module body_panel_top() {
 		}
 
 		// Extra secure mount on top and bottom
-		translate(v = [0,(overall_length/2)-1,2]) cube(size = [6,2,3], center = true);
-		translate(v = [0,-(overall_length/2)+1,2]) cube(size = [6,2,3], center = true);
+		translate(v = [0,(overall_length/2)-1,2.75]) cube(size = [8,2,4], center = true);
+		translate(v = [0,-(overall_length/2)+1,2.75]) cube(size = [8,2,4], center = true);
 
 		// Screw Mounts
 		translate(v = [mount_width,26.4,4.6]) screw_mount();
