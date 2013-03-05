@@ -10,7 +10,7 @@
 // comment on each line
 phone_length = 115; // 101 115
 phone_width = 62; // 53 62
-phone_depth = 13; // 10 13
+phone_depth = 18; // 10 13  Be sure to include space (~5mm) for the distance sensor
 phone_back_radius = 2; // 4
 cutout_height = 14; // 58
 cutout_width = 24; // 42
@@ -24,16 +24,16 @@ mount_width = (overall_width/2) - 2.8;
 bracket_width = (overall_width/2) - 6.5;
 
 // Full body
-translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
-translate(v = [0, (overall_length/2)+1.6, (overall_width/2)]) rotate(a = [0,90,-90]) body_panel_left();
-translate(v = [0, -(overall_length/2)-1.6, (overall_width/2)]) rotate(a = [0,90,90]) body_panel_right();
-translate(v = [0,0,-3.8]) body_panel_bottom();
-translate(v = [(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,-90,0]) body_panel_back();
-translate(v = [0,0,overall_width+3.8]) rotate(a = [180,0,0]) body_panel_top();
+//translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
+//translate(v = [0, (overall_length/2)+1.6, (overall_width/2)]) rotate(a = [0,90,-90]) body_panel_left();
+//translate(v = [0, -(overall_length/2)-1.6, (overall_width/2)]) rotate(a = [0,90,90]) body_panel_right();
+//translate(v = [0,0,-3.8]) body_panel_bottom();
+//translate(v = [(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,-90,0]) body_panel_back();
+//translate(v = [0,0,overall_width+3.8]) rotate(a = [180,0,0]) body_panel_top();
 
 
 // To Print
-//body_panel_front();
+body_panel_front();
 //body_panel_left();
 //body_panel_right();
 //body_panel_bottom();
@@ -56,21 +56,17 @@ module body_panel_bottom() {
 			translate(v = [16.5,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
 			translate(v = [-19.6,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
 
-			translate(v = [12.7,26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [-12.7,26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [12.7,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [-12.7,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [0,12.6,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [0,-12.8,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [26.4,12.7,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [26.4,-12.7,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-26.4,12.7,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-26.4,-12.7,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [12.6,0,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-12.8,0,0]) cube(size = [2.9,2.9,12], center = true);
 
 			translate(v = [0,38,4.6]) cube(size = [overall_width-10,14,6], center = true);
 			translate(v = [0,-38,4.6]) cube(size = [overall_width-10,14,6], center = true);
-			translate(v = [0,0,4.6]) cube(size = [overall_width-10,44,6], center = true);
-		}
-		difference() {
-				translate(v = [0,0,2.3]) cube(size = [10,46,3], center = true);
-				translate(v = [0,12.6,0]) cube(size = [2.9,2.9,12], center = true);
-				translate(v = [0,-12.8,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [0,22,4.6]) cube(size = [overall_width-36,26,6], center = true);
+			translate(v = [0,-22,4.6]) cube(size = [overall_width-36,26,6], center = true);
 		}
 
 	}	
@@ -144,8 +140,9 @@ module body_panel_front() {
 				translate(v = [0,cutout_vertical_offset-(cutout_height/2)-6,0]) cube(size = [2.9,2.9,4], center = true);
 			}
 
-			translate(v = [-8,13,-3]) cylinder(r = 8, h = 8);
-			translate(v = [-8,-13,-3]) cylinder(r = 8, h = 8);
+			// Distance Sensor
+			translate(v = [-8,13,-3]) cylinder(r = 8.5, h = 8);
+			translate(v = [-8,-13,-3]) cylinder(r = 8.5, h = 8);
 		}
 
 		// Extra secure mount on top and bottom
