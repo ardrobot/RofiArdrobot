@@ -141,13 +141,13 @@ module body_panel_front() {
 			}
 
 			// Distance Sensor
-			translate(v = [-8,13,-3]) cylinder(r = 8.5, h = 8);
-			translate(v = [-8,-13,-3]) cylinder(r = 8.5, h = 8);
+			translate(v = [-8,13,-3]) cylinder(r = 9, h = 8);
+			translate(v = [-8,-13,-3]) cylinder(r = 9, h = 8);
 		}
 
 		// Extra secure mount on top and bottom
-		translate(v = [0,(overall_length/2)-1,2.75]) cube(size = [8,2,4], center = true);
-		translate(v = [0,-(overall_length/2)+1,2.75]) cube(size = [8,2,4], center = true);
+		translate(v = [0,(overall_length/2)-1,phone_depth/2-2.5]) cube(size = [8,2,phone_depth-5], center = true);
+		translate(v = [0,-(overall_length/2)+1,phone_depth/2-2.5]) cube(size = [8,2,phone_depth-5], center = true);
 
 		// Screw Mounts
 		translate(v = [mount_width,26.4,4.6]) screw_mount();
