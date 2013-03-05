@@ -2,6 +2,7 @@
 //color("Blue") import("body_panel_front.stl");
 //color("Blue") import("body_panel_left.stl");
 //translate(v = [0,-2,0]) color("Green") import("body_riser_NH_v2.stl");
+//translate(v = [(overall_width/2)+5, 52, 90]) rotate(a = [180,90,0]) color("Red") import("Arduino_Mega_8mm_Mount001.stl");
 
 // Phone Dimensions
 // Current dimenensions for the Kyocera Hydro
@@ -11,10 +12,10 @@ phone_length = 115; // 101 115
 phone_width = 62; // 53 62
 phone_depth = 13; // 10 13
 phone_back_radius = 2; // 4
-cutout_height = 16; // 58
-cutout_width = 40; // 42
-cutout_vertical_offset = 38; // 14
-hood_mount = true; // false
+cutout_height = 14; // 58
+cutout_width = 24; // 42
+cutout_vertical_offset = 39; // 14
+hood_mount = false; // false
 
 // Computed Dimensions
 overall_width = phone_width + 15;
@@ -26,25 +27,28 @@ bracket_width = (overall_width/2) - 6.5;
 translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
 translate(v = [0, (overall_length/2)+1.6, (overall_width/2)]) rotate(a = [0,90,-90]) body_panel_left();
 translate(v = [0, -(overall_length/2)-1.6, (overall_width/2)]) rotate(a = [0,90,90]) body_panel_right();
-translate(v = [1.6,0,-3.8]) body_panel_bottom();
+translate(v = [0,0,-3.8]) body_panel_bottom();
+translate(v = [(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,-90,0]) body_panel_back();
+translate(v = [0,0,overall_width+3.8]) rotate(a = [180,0,0]) body_panel_top();
 
 
-// print
+// To Print
 //body_panel_front();
 //body_panel_left();
 //body_panel_right();
 //body_panel_bottom();
+//body_panel_back();
+//body_panel_top();
 
 module body_panel_bottom() {
 	union() {
 		difference() {
-			translate(v = [0,0,1.8]) cube(size = [overall_width+3.2,overall_length+3.2,4], center = true);
+			translate(v = [0,0,1.8]) cube(size = [overall_width,overall_length+3.2,4], center = true);
 
-
-			translate(v = [(overall_width/2)-3,26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [-(overall_width/2)+3,26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [(overall_width/2)-3,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
-			translate(v = [-(overall_width/2)+3,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [(overall_width/2)-4.8,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+4.8,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [(overall_width/2)-4.8,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+4.8,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
 
 
 			translate(v = [16.5,(overall_length/2)-3.2,0]) cube(size = [2.9,2.9,12], center = true);
@@ -67,6 +71,30 @@ module body_panel_bottom() {
 				translate(v = [0,0,2.3]) cube(size = [10,46,3], center = true);
 				translate(v = [0,12.6,0]) cube(size = [2.9,2.9,12], center = true);
 				translate(v = [0,-12.8,0]) cube(size = [2.9,2.9,12], center = true);
+		}
+
+	}	
+}
+
+module body_panel_top() {
+	union() {
+		difference() {
+			translate(v = [0,0,1.8]) cube(size = [overall_width,overall_length+3.2,4], center = true);
+
+			translate(v = [(overall_width/2)-4.8,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+4.8,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [(overall_width/2)-4.8,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+4.8,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+
+
+			translate(v = [16.5,(overall_length/2)-3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-19.6,(overall_length/2)-3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [16.5,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-19.6,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
+
+			translate(v = [0,38,4.6]) cube(size = [overall_width-10,14,6], center = true);
+			translate(v = [0,-38,4.6]) cube(size = [overall_width-10,14,6], center = true);
+			translate(v = [0,0,4.6]) cube(size = [overall_width-10,44,6], center = true);
 		}
 	}	
 }
@@ -92,7 +120,7 @@ module body_panel_right() {
 		difference() {
 			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
 			translate(v = [0,6xx,-3]) cylinder(r = 9.5, h = 8);
-			translate(v = [0,-27,0]) cube(size = [50,12,8], center = true);
+			translate(v = [-4,-28,0]) cube(size = [50,12,8], center = true);
 		}
 
 		// Screw Mounts
@@ -115,6 +143,9 @@ module body_panel_front() {
 				translate(v = [-((cutout_width/2) + 6),cutout_vertical_offset,0]) cube(size = [2.9,2.9,4], center = true);
 				translate(v = [0,cutout_vertical_offset-(cutout_height/2)-6,0]) cube(size = [2.9,2.9,4], center = true);
 			}
+
+			translate(v = [-8,13,-3]) cylinder(r = 8, h = 8);
+			translate(v = [-8,-13,-3]) cylinder(r = 8, h = 8);
 		}
 
 		// Extra secure mount on top and bottom
@@ -136,6 +167,32 @@ module body_panel_front() {
 	}
 }
 
+module body_panel_back() {
+	union() {
+		difference() {
+			translate(v = [0,0,.8]) cube(size = [overall_width,overall_length,1.6], center = true);
+			translate(v = [25.2,41.3,-3]) cylinder(r = 2, h = 10);
+			translate(v = [25.2,-41.3,-3]) cylinder(r = 2, h = 10);
+			translate(v = [-22.7,-40.3,-3]) cylinder(r = 2, h = 10);
+			translate(v = [-22.7,34.8,-3]) cylinder(r = 2, h = 10);
+		}
+
+		// Screw Mounts
+		translate(v = [mount_width,26.4,4.6]) screw_mount();
+		translate(v = [-mount_width,26.4,4.6]) screw_mount();
+		translate(v = [mount_width,-26.4,4.6]) screw_mount();
+		translate(v = [-mount_width,-26.4,4.6]) screw_mount();
+
+		// Arduino Mounts
+		translate(v = [25.2,41.3,1]) arduino_riser();
+		translate(v = [25.2,-41.3,1]) arduino_riser();
+		translate(v = [-22.7,-40.3,1]) arduino_riser();
+		translate(v = [-22.7,34.8,1]) arduino_riser();
+
+	}
+}
+
+
 module screw_mount() {
 	difference() {
 		cube(size = [5.6,6.5,6.5], center = true);
@@ -152,5 +209,10 @@ module phone_bracket() {
 	}
 }
 
-
-//11 63
+// Arduino Mount Riser
+module arduino_riser() {
+	difference() {
+		cylinder(r = 4, h = 5);
+		translate(v = [0,0,-3]) cylinder(r = 2, h = 10);
+	}
+}
