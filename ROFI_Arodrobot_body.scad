@@ -1,12 +1,14 @@
 //color("Blue") import("body_panel_top.stl");
 //color("Blue") import("body_panel_front.stl");
+//color("Blue") import("body_panel_left.stl");
+//translate(v = [0,-2,0]) color("Green") import("body_riser_NH_v2.stl");
 
 // Phone Dimensions
 // Current dimenensions for the Kyocera Hydro
 // Original Archos 28 settings shown after the 
 // comment on each line
-phone_length = 115; // 101 115
-phone_width = 62; // 53 62
+phone_length = 101; // 101 115
+phone_width = 53; // 53 62
 phone_depth = 13; // 10 13
 phone_back_radius = 2; // 4
 cutout_height = 16; // 58
@@ -24,12 +26,50 @@ bracket_width = (overall_width/2) - 6.5;
 translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
 translate(v = [0, (overall_length/2)+1.6, (overall_width/2)]) rotate(a = [0,90,-90]) body_panel_left();
 translate(v = [0, -(overall_length/2)-1.6, (overall_width/2)]) rotate(a = [0,90,90]) body_panel_right();
+translate(v = [1.6,0,-3.8]) body_panel_bottom();
 
 
 // print
 //body_panel_front();
 //body_panel_left();
 //body_panel_right();
+//body_panel_bottom();
+
+module body_panel_bottom() {
+	union() {
+		difference() {
+			translate(v = [0,0,1.8]) cube(size = [overall_width+3.2,overall_length+3.2,4], center = true);
+
+
+			translate(v = [(overall_width/2)-3,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+3,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [(overall_width/2)-3,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-(overall_width/2)+3,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+
+
+			translate(v = [16.5,(overall_length/2)-3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-19.6,(overall_length/2)-3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [16.5,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-19.6,-(overall_length/2)+3.2,0]) cube(size = [2.9,2.9,12], center = true);
+
+			translate(v = [12.7,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-12.7,26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [12.7,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [-12.7,-26.4,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [0,12.6,0]) cube(size = [2.9,2.9,12], center = true);
+			translate(v = [0,-12.8,0]) cube(size = [2.9,2.9,12], center = true);
+
+			translate(v = [0,38,4.6]) cube(size = [overall_width-10,14,6], center = true);
+			translate(v = [0,-38,4.6]) cube(size = [overall_width-10,14,6], center = true);
+			translate(v = [0,0,4.6]) cube(size = [overall_width-10,44,6], center = true);
+		}
+		difference() {
+				translate(v = [0,0,2.3]) cube(size = [10,46,3], center = true);
+				translate(v = [0,12.6,0]) cube(size = [2.9,2.9,12], center = true);
+				translate(v = [0,-12.8,0]) cube(size = [2.9,2.9,12], center = true);
+		}
+	}	
+}
 
 module body_panel_left() {
 	union() {
@@ -51,6 +91,8 @@ module body_panel_right() {
 	union() {
 		difference() {
 			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
+			translate(v = [0,6xx,-3]) cylinder(r = 9.5, h = 8);
+			translate(v = [0,-27,0]) cube(size = [50,12,8], center = true);
 		}
 
 		// Screw Mounts
