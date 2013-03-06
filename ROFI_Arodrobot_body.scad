@@ -21,7 +21,7 @@ hood_mount = false; // false
 overall_width = phone_width + 15;
 overall_length = phone_length + 6;
 mount_width = (overall_width/2) - 2.8;
-bracket_width = (overall_width/2) - 6.5;
+
 
 // Full body
 //translate(v = [-(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,90,0]) body_panel_front();
@@ -30,15 +30,20 @@ bracket_width = (overall_width/2) - 6.5;
 //translate(v = [0,0,-3.8]) body_panel_bottom();
 //translate(v = [(overall_width/2), 0, (overall_width/2)]) rotate(a = [0,-90,0]) body_panel_back();
 //translate(v = [0,0,overall_width+3.8]) rotate(a = [180,0,0]) body_panel_top();
+//translate(v = [-(overall_width/2)+phone_depth+6,43,(overall_width/2)]) rotate(a = [0,90,0]) phone_bar();
+//translate(v = [-(overall_width/2)+phone_depth+6,6.2,(overall_width/2)]) rotate(a = [0,90,0]) phone_bar();
+//translate(v = [-(overall_width/2)+phone_depth+6,-37.3,(overall_width/2)]) rotate(a = [0,90,0]) phone_bar();
 
 
 // To Print
-body_panel_front();
+//body_panel_front();
 //body_panel_left();
 //body_panel_right();
 //body_panel_bottom();
 //body_panel_back();
 //body_panel_top();
+phone_bar();
+
 
 module body_panel_bottom() {
 	union() {
@@ -146,8 +151,12 @@ module body_panel_front() {
 		}
 
 		// Extra secure mount on top and bottom
-		translate(v = [0,(overall_length/2)-1,phone_depth/2-2.5]) cube(size = [8,2,phone_depth-5], center = true);
-		translate(v = [0,-(overall_length/2)+1,phone_depth/2-2.5]) cube(size = [8,2,phone_depth-5], center = true);
+		translate(v = [0,(overall_length/2)-1.5,phone_depth/2-2.5]) cube(size = [8,3,phone_depth-5], center = true);
+		translate(v = [0,-(overall_length/2)+1.5,phone_depth/2-2.5]) cube(size = [8,3,phone_depth-5], center = true);
+
+		// Support Struts
+		translate(v = [(overall_width/2)-12, 0, 2]) cube(size = [6, overall_length, 2], center = true);
+		translate(v = [-(overall_width/2)+12, 0, 2]) cube(size = [6, overall_length, 2], center = true);
 
 		// Screw Mounts
 		translate(v = [mount_width,26.4,4.6]) screw_mount();
@@ -156,11 +165,14 @@ module body_panel_front() {
 		translate(v = [-mount_width,-26.4,4.6]) screw_mount();
 
 		// Phone Brackets
-		translate(v = [bracket_width,43,(phone_depth/2)+2.5]) phone_bracket();
-		translate(v = [bracket_width,6.2,(phone_depth/2)+2.5]) phone_bracket();
-		translate(v = [bracket_width,-38.3,(phone_depth/2)+2.5]) phone_bracket();
-		translate(v = [-bracket_width,6.2,(phone_depth/2)+2.5]) rotate(a = [0,0,180]) phone_bracket();
-		translate(v = [-bracket_width,-37.3,(phone_depth/2)+2.5]) rotate(a = [0,0,180]) phone_bracket();
+//		translate(v = [(overall_width/2) - 6.5,43,(phone_depth/2)+2.5]) phone_bracket_curved();
+
+		translate(v = [(overall_width/2) - 3.3,43,(phone_depth/2)+2]) phone_bracket();
+		translate(v = [(overall_width/2) - 3.3,6.2,(phone_depth/2)+2]) phone_bracket();
+		translate(v = [(overall_width/2) - 3.3,-37.3,(phone_depth/2)+2.5]) phone_bracket();
+		translate(v = [-(overall_width/2) + 3.3,43,(phone_depth/2)+2.5]) phone_bracket();
+		translate(v = [-(overall_width/2) + 3.3,6.2,(phone_depth/2)+2.5]) phone_bracket();
+		translate(v = [-(overall_width/2) + 3.3,-37.3,(phone_depth/2)+2.5]) phone_bracket();
 	}
 }
 
@@ -199,6 +211,13 @@ module screw_mount() {
 
 module phone_bracket() {
 	difference() {
+		cube(size = [6.5,6.5,phone_depth+2.5], center = true);
+		translate(v = [0,0,(phone_depth/2)-5]) cylinder(r = 1.6, h = phone_depth, $fn=10, center = true);
+	}
+}
+
+module phone_bracket_curved() {
+	difference() {
 		cube(size = [13,6.5,phone_depth + 4], center = true);
 		translate(v = [-4-phone_back_radius,0,-2]) cube(size = [13,7.5,phone_depth+4], center = true);
 		translate(v = [-4,0,-2-phone_back_radius]) cube(size = [13,7.5,phone_depth+4], center = true);
@@ -213,3 +232,13 @@ module arduino_riser() {
 		translate(v = [0,0,-3]) cylinder(r = 2, h = 10);
 	}
 }
+
+module phone_bar() {
+	difference() {
+		cube(size = [overall_width, 6.5, 4], center = true);
+		translate(v = [(overall_width/2)-3.2,0,]) cylinder(r = 1.75, h = 20, center = true);
+		translate(v = [-(overall_width/2)+3.2,0,]) cylinder(r = 1.75, h = 20, center = true);
+	}
+}
+
+
