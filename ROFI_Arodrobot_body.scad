@@ -36,13 +36,13 @@ mount_width = (overall_width/2) - 2.8;
 
 
 // To Print
-//body_panel_front();
+body_panel_front();
 //body_panel_left();
 //body_panel_right();
 //body_panel_bottom();
 //body_panel_back();
 //body_panel_top();
-phone_bar();
+//phone_bar();
 
 
 module body_panel_bottom() {
@@ -155,8 +155,11 @@ module body_panel_front() {
 		translate(v = [0,-(overall_length/2)+1.5,phone_depth/2-2.5]) cube(size = [8,3,phone_depth-5], center = true);
 
 		// Support Struts
-		translate(v = [(overall_width/2)-12, 0, 2]) cube(size = [6, overall_length, 2], center = true);
+		translate(v = [(overall_width/2)-12, 0, 4.75]) cube(size = [6, overall_length, 8], center = true);
 		translate(v = [-(overall_width/2)+12, 0, 2]) cube(size = [6, overall_length, 2], center = true);
+		translate(v = [-(overall_width/2)+19, 0, 2.7]) cube(size = [3, 40, 3], center = true);
+		translate(v = [(overall_width/2)-35, 13.5, 2.7]) cube(size = [3, 10, 3], center = true);
+		translate(v = [(overall_width/2)-35, -13.5, 2.7]) cube(size = [3, 10, 3], center = true);
 
 		// Screw Mounts
 		translate(v = [mount_width,26.4,4.6]) screw_mount();
