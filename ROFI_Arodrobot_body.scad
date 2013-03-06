@@ -103,16 +103,16 @@ module body_panel_top() {
 module body_panel_left() {
 	union() {
 		difference() {
-			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
+			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,2], center = true);
 			translate(v = [(overall_width/2)-26,-(overall_width/2)+10,0]) cube(size = [20,24,4],center = true);
-			translate(v = [0,(overall_width/2)-6,0]) cube(size = [16,16,4],center = true);
+			translate(v = [(overall_width/2)-6,0,0]) cube(size = [16,16,4],center = true);
 		}
 
 		// Screw Mounts
-		translate(v = [mount_width,18.5,4.6]) screw_mount();
-		translate(v = [-mount_width,18.5,4.6]) screw_mount();
-		translate(v = [mount_width,-17.5,4.6]) screw_mount();
-		translate(v = [-mount_width,-17.5,4.6]) screw_mount();
+		translate(v = [mount_width,18.5,5]) screw_mount();
+		translate(v = [-mount_width,18.5,5]) screw_mount();
+		translate(v = [mount_width,-17.5,5]) screw_mount();
+		translate(v = [-mount_width,-17.5,5]) screw_mount();
 
 	}
 }
@@ -120,18 +120,18 @@ module body_panel_left() {
 module body_panel_right() {
 	union() {
 		difference() {
-			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
+			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,2], center = true);
 			translate(v = [0,6,-3]) cylinder(r = 9.5, h = 8);
 			translate(v = [-4,-28,0]) cube(size = [50,12,8], center = true);
-			translate(v = [0,(overall_width/2)-6,0]) cube(size = [16,16,4],center = true);
+			translate(v = [(overall_width/2)-6,0,0]) cube(size = [16,16,4],center = true);
 		}
 
 
 		// Screw Mounts
-		translate(v = [mount_width,18.5,4.6]) screw_mount();
-		translate(v = [-mount_width,18.5,4.6]) screw_mount();
-		translate(v = [mount_width,-17.5,4.6]) screw_mount();
-		translate(v = [-mount_width,-17.5,4.6]) screw_mount();
+		translate(v = [mount_width,18.5,5]) screw_mount();
+		translate(v = [-mount_width,18.5,5]) screw_mount();
+		translate(v = [mount_width,-17.5,5]) screw_mount();
+		translate(v = [-mount_width,-17.5,5]) screw_mount();
 
 	}
 }
