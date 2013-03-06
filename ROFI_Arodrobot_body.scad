@@ -36,8 +36,8 @@ mount_width = (overall_width/2) - 2.8;
 
 
 // To Print
-body_panel_front();
-//body_panel_left();
+//body_panel_front();
+body_panel_left();
 //body_panel_right();
 //body_panel_bottom();
 //body_panel_back();
@@ -104,7 +104,8 @@ module body_panel_left() {
 	union() {
 		difference() {
 			translate(v = [0,0,.8]) cube(size = [overall_width,overall_width,1.6], center = true);
-			translate(v = [(overall_width/2)-26,-(overall_width/2)+6,0]) cube(size = [18,16,4],center = true);
+			translate(v = [(overall_width/2)-26,-(overall_width/2)+10,0]) cube(size = [20,24,4],center = true);
+			translate(v = [0,(overall_width/2)-6,0]) cube(size = [16,16,4],center = true);
 		}
 
 		// Screw Mounts
